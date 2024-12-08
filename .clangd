@@ -1,0 +1,7 @@
+CompileFlags:
+  Add:
+    - "-I/usr/include/GNUstep"
+    - "-I/usr/include/GNUstep/objc"
+    - "-I/usr/local/include/GNUstep"
+    - "-I/usr/local/include/GNUstep/objc"
+
