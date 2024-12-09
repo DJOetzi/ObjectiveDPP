@@ -5,16 +5,7 @@
 #import "commands/include/Ping.h"
 
 // TODO: register and handle commands properly!
-std::map<std::string, id<DPPCommand>> commands = {
-        // TODO: implement and add commands
-        /*{ "ping", { "A ping command", handle_ping }},
-        { "help", {
-                    "A help command", handle_help , {
-                                                            { dpp::command_option(dpp::co_string, "term", "Help term", false) },
-                                                    }
-                  }},
-        { "info", { "An info command", handle_info }},*/
-};
+std::map<std::string, id<DPPCommand>> commands = {};
 
 int main() {
     nlohmann::json configdocument;
@@ -41,10 +32,14 @@ int main() {
         bot.on_ready([&bot, &command_list](const dpp::ready_t& event) {
             if (dpp::run_once<struct register_bot_commands>()) {
                 //bot.global_command_create(dpp::slashcommand("ping", "Ping pong!", bot.me.id));
-                bot.global_bulk_command_create({});
+                std::vector<dpp::slashcommand> tmp_commands{};
 
                 for(id<DPPCommand> cmd : command_list)
-                    bot.global_command_create([cmd creatable_slashcommand:bot.me.id]);
+                    tmp_commands.push_back([cmd creatable_slashcommand:bot.me.id]);
+
+                //bot.guild_bulk_command_create({}, 581800183583604746);
+                bot.global_bulk_command_create(tmp_commands);
+                NSLog(@"SUCCESSFULLY CREATED COMMANDS!");
             }
         });
 
