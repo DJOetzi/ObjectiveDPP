@@ -23,7 +23,13 @@ include_directories(/usr/include/GNUstep)
 # Link directories
 link_directories(/usr/lib/x86_64-linux-gnu)
 
-add_executable(BoomerBotReborn src/main.mm)
+file(GLOB COMMAND_SOURCES ${CMAKE_SOURCE_DIR}/src/commands/*.mm)
+
+set(SOURCES
+        src/main.mm
+        ${COMMAND_SOURCES}
+)
+add_executable(BoomerBotReborn ${SOURCES})
 
 find_package(DPP REQUIRED)
 

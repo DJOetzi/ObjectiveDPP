@@ -18,7 +18,7 @@
         return std::make_pair(name, self);
     }
 
-    - (void) exec   : (dpp::cluster&) ctx andSlashCommand : (dpp::slashcommand_t&) cmd {
+    - (void) exec   : (dpp::cluster&) ctx andSlashCommand : (const dpp::slashcommand_t&) cmd {
     }
 
     - (const std::string&) getName {
