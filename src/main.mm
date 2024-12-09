@@ -4,15 +4,12 @@
 #import "commands/include/Protocols/DPPCommand.h"
 #import "commands/include/Ping.h"
 
-// TODO: register and handle commands properly!
-std::map<std::string, id<DPPCommand>> commands = {};
-
 int main() {
-    nlohmann::json configdocument;
-    std::ifstream configfile("../data/config.json");
-    configfile >> configdocument;
-
     @autoreleasepool {
+        nlohmann::json configdocument;
+        std::ifstream configfile("../data/config.json");
+        configfile >> configdocument;
+
         /* Setup the bot */
         dpp::cluster bot(configdocument["token"]);
 
@@ -21,11 +18,13 @@ int main() {
         std::vector<id<DPPCommand>> command_list = {
                 [[Ping alloc] init:"ping" andDescription:"Ping pong pung" andParameters:{}]
         };
+        // TODO: register and handle commands properly!
+        std::map<std::string, id<DPPCommand>> commands = {};
 
         for(id<DPPCommand> cmd : command_list)
             commands[[cmd getName]] = cmd;
 
-        bot.on_slashcommand([&bot](const dpp::slashcommand_t& event) {
+        bot.on_slashcommand([&bot, &commands](const dpp::slashcommand_t& event) {
             [commands[event.command.get_command_name()] exec:bot andSlashCommand:event];
         });
 
