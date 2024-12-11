@@ -5,16 +5,16 @@
 #import "commands/include/Ping.h"
 
 auto main() -> int {
+    nlohmann::json configdocument;
+    std::ifstream configfile("../data/config.json");
+    configfile >> configdocument;
+
+    /* Setup the bot */
+    dpp::cluster bot(configdocument["token"]);
+
+    bot.on_log(dpp::utility::cout_logger());
+
     @autoreleasepool {
-        nlohmann::json configdocument;
-        std::ifstream configfile("../data/config.json");
-        configfile >> configdocument;
-
-        /* Setup the bot */
-        dpp::cluster bot(configdocument["token"]);
-
-        bot.on_log(dpp::utility::cout_logger());
-
         std::vector<id<DPPCommand>> command_list = {
                 [[Ping alloc] init:"ping" andDescription:"Ping pong pung" andParameters:{}]
         };
