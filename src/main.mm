@@ -4,7 +4,7 @@
 #import "commands/include/Protocols/DPPCommand.h"
 #import "commands/include/Ping.h"
 
-int main() {
+auto main() -> int {
     @autoreleasepool {
         nlohmann::json configdocument;
         std::ifstream configfile("../data/config.json");
