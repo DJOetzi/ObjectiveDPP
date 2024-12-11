@@ -20,17 +20,19 @@
                 cmd.reply("This message intentionally left blank. 🤪");
             }
         }
-        /* Help reply */
-        cmd.reply(
-                dpp::message().add_embed(
-                        dpp::embed().
-                                set_color(dpp::colors::yellow).
-                                set_title("Help lol").
-                                set_description("Help goes here").
-                                add_field("/help", "This command, moron").
-                                add_field("/info", "See some info").
-                                add_field("/ping", "Pong?")
-                )
-        );
+        else {
+            /* Help reply */
+            cmd.reply(
+                    dpp::message().add_embed(
+                            dpp::embed().
+                                    set_color(dpp::colors::yellow).
+                                    set_title("Help lol").
+                                    set_description("Help goes here").
+                                    add_field("/help", "This command, moron").
+                                    add_field("/info", "See some info").
+                                    add_field("/ping", "Pong?")
+                    )
+            );
+        }
     }
 @end
