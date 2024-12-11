@@ -29,16 +29,19 @@ int main() {
         });
 
         bot.on_ready([&bot, &command_list](const dpp::ready_t& event) {
-            if (dpp::run_once<struct register_bot_commands>()) {
-                //bot.global_command_create(dpp::slashcommand("ping", "Ping pong!", bot.me.id));
-                std::vector<dpp::slashcommand> tmp_commands{};
+            @autoreleasepool {
+                if (dpp::run_once<struct register_bot_commands>()) {
+                    //bot.global_command_create(dpp::slashcommand("ping", "Ping pong!", bot.me.id));
+                    std::vector<dpp::slashcommand> tmp_commands{};
 
-                for(id<DPPCommand> cmd : command_list)
-                    tmp_commands.push_back([cmd creatable_slashcommand:bot.me.id]);
+                    for(id<DPPCommand> cmd : command_list)
+                        tmp_commands.push_back([cmd creatable_slashcommand:bot.me.id]);
 
-                //bot.guild_bulk_command_create({}, 581800183583604746);
-                bot.global_bulk_command_create(tmp_commands);
-                NSLog(@"SUCCESSFULLY CREATED COMMANDS!");
+                    //bot.guild_bulk_command_create({}, 581800183583604746);
+                    bot.global_bulk_command_create(tmp_commands);
+
+                    NSLog(@"SUCCESSFULLY REGISTERED COMMANDS!");
+                }
             }
         });
 
