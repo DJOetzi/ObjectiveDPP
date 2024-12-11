@@ -38,6 +38,7 @@ auto main() -> int {
                 if (dpp::run_once<struct register_bot_commands>()) {
                     //bot.global_command_create(dpp::slashcommand("ping", "Ping pong!", bot.me.id));
                     std::vector<dpp::slashcommand> tmp_commands{};
+                    tmp_commands.reserve(command_list.size());
 
                     for(id<DPPCommand> cmd : command_list)
                         tmp_commands.push_back([cmd creatable_slashcommand:bot.me.id]);
