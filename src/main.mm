@@ -4,6 +4,7 @@
 #import "commands/include/Protocols/DPPCommand.h"
 #import "commands/include/Ping.h"
 #import "commands/include/Info.h"
+#import "commands/include/Help.h"
 
 auto main() -> int {
     nlohmann::json configdocument;
@@ -19,7 +20,8 @@ auto main() -> int {
         std::vector<id<DPPCommand>> command_list = {
                 // add commands here
                 [[Ping alloc] init:"ping" andDescription:"A ping command" andParameters:{}],
-                [[Info alloc] init:"info" andDescription:"An info command" andParameters:{}]
+                [[Info alloc] init:"info" andDescription:"An info command" andParameters:{}],
+                [[Help alloc] init:"help" andDescription:"A help command" andParameters:{{ dpp::command_option(dpp::co_string, "term", "Help term", false) }}],
         };
         // TODO: register and handle commands properly!
         std::map<std::string, id<DPPCommand>> commands = {};
