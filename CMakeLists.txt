@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.28)
-project(BoomerBotReborn)
+project(ObjectiveDPP)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 enable_language(OBJCXX)
@@ -29,12 +29,12 @@ set(SOURCES
         src/main.mm
         ${COMMAND_SOURCES}
 )
-add_executable(BoomerBotReborn ${SOURCES})
+add_executable(ObjectiveDPP ${SOURCES})
 
 find_package(DPP REQUIRED)
 
 # Link libraries
-target_link_libraries(BoomerBotReborn gnustep-base objc ${DPP_LIBRARIES})
+target_link_libraries(ObjectiveDPP gnustep-base objc ${DPP_LIBRARIES})
 
 # Include the DPP directories.
 target_include_directories(${PROJECT_NAME} PRIVATE
