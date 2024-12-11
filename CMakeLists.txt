@@ -28,7 +28,6 @@ file(GLOB COMMAND_SOURCES ${CMAKE_SOURCE_DIR}/src/commands/*.mm)
 set(SOURCES
         src/main.mm
         ${COMMAND_SOURCES}
-        src/commands/include/Info.h
 )
 add_executable(ObjectiveDPP ${SOURCES})
 
