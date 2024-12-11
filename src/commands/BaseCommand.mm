@@ -11,7 +11,10 @@
     }
 
     - (dpp::slashcommand) creatable_slashcommand : (dpp::snowflake) ctx_id {
-        return dpp::slashcommand(name, description, ctx_id);
+        dpp::slashcommand cmd = dpp::slashcommand(name, description, ctx_id);
+        cmd.options = parameters;
+
+        return cmd;
     }
 
     - (std::pair<std::string, id<DPPCommand>>) mapable_slashcommand {
