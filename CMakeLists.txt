@@ -11,7 +11,7 @@ set(CMAKE_C_FLAGS "-x objective-c")
 set(CMAKE_CXX_FLAGS "-x objective-c++")
 
 # Include GNUstep configuration flags
-execute_process(COMMAND gnustep-config --objc-flags OUTPUT_VARIABLE OBJC_FLAGS OUTPUT_STRIP_TRAILING_WHITESPACE)
+execute_process(COMMAND -fobjc-arc gnustep-config --objc-flags OUTPUT_VARIABLE OBJC_FLAGS OUTPUT_STRIP_TRAILING_WHITESPACE)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OBJC_FLAGS}")
 
 # Set the constant string class
