@@ -23,7 +23,7 @@ include_directories(/usr/include/GNUstep)
 # Link directories
 link_directories(/usr/lib/x86_64-linux-gnu)
 
-file(GLOB COMMAND_SOURCES ${CMAKE_SOURCE_DIR}/src/commands/*.mm)
+file(GLOB COMMAND_SOURCES ${CMAKE_SOURCE_DIR}/src/*/*.mm)
 
 set(SOURCES
         src/main.mm

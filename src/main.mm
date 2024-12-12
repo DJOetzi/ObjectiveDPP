@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #include <dpp/dpp.h>
 
+#import "utility/include/logging.h"
 #import "commands/include/Protocols/DPPCommand.h"
 #import "commands/include/Ping.h"
 #import "commands/include/Info.h"
@@ -14,7 +15,7 @@ auto main() -> int {
     /* Setup the bot */
     dpp::cluster bot(configdocument["token"]);
 
-    bot.on_log(dpp::utility::cout_logger());
+    bot.on_log(nslog_logger());
 
     @autoreleasepool {
         std::vector<id<DPPCommand>> command_list = {
