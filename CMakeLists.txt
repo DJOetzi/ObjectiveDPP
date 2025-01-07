@@ -8,6 +8,10 @@ if(UNIX AND NOT APPLE)
     set(LINUX TRUE)
 endif()
 
+if(UNIX AND APPLE)
+    set(MACOS TRUE)
+endif()
+
 #set(CMAKE_EXE_LINKER_FLAGS "`gnustep-config --objc-flags` -fconstant-string-class=NSConstantString -I/usr/include/GNUstep -L/usr/lib/x86_64-linux-gnu -Xlinker -lgnustep-base -lobj")
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -47,7 +51,7 @@ if(LINUX)
     target_link_libraries(ObjectiveDPP gnustep-base objc ${DPP_LIBRARIES})
 endif ()
 
-if(UNIX AND APPLE)
+if(MACOS)
     target_link_libraries(ObjectiveDPP "-framework Foundation"  ${DPP_LIBRARIES})
 endif()
 
